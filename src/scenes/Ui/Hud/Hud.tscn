@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bxvxvphijn2ca"]
+
+[ext_resource type="Script" uid="uid://r8svhrxrcjpa" path="res://src/scenes/Ui/Hud/hud.gd" id="1_fbq84"]
+
+[node name="Hud" type="CanvasLayer" unique_id=1039513562]
+script = ExtResource("1_fbq84")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1300883150]
+offset_right = 1151.0
+offset_bottom = 54.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=376007779]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Tiempo" type="Label" parent="PanelContainer/HBoxContainer" unique_id=158599487]
+layout_mode = 2
+text = "Tiempo"
+
+[node name="Monedas" type="Label" parent="PanelContainer/HBoxContainer" unique_id=541135962]
+layout_mode = 2
+text = "Monedas"
+
+[node name="Nivel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=61741774]
+layout_mode = 2
+text = "Nivel"
+
+[node name="Vidas" type="Label" parent="PanelContainer/HBoxContainer" unique_id=654891026]
+layout_mode = 2
+text = "Vidas Restantes"

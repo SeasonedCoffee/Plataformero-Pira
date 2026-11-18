@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bdbw5vwxyoyfh"]
+
+[ext_resource type="Texture2D" uid="uid://b2adsmm1xpvt2" path="res://assets/Sprites/Enemies/Chaser/Sprite sheet Acechador.png" id="1_jelyp"]
+[ext_resource type="Script" uid="uid://p664hqc01a4i" path="res://src/scenes/Entities/Enemies/chaser/chaser.gd" id="1_r0mhk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0mhk"]
+atlas = ExtResource("1_jelyp")
+region = Rect2(0, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqhwl"]
+atlas = ExtResource("1_jelyp")
+region = Rect2(33, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66wmj"]
+atlas = ExtResource("1_jelyp")
+region = Rect2(66, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr127"]
+atlas = ExtResource("1_jelyp")
+region = Rect2(99, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6ba0"]
+atlas = ExtResource("1_jelyp")
+region = Rect2(132, 0, 33, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6q742"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0mhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqhwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66wmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr127")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6ba0")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h063n"]
+size = Vector2(24, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qe4n8"]
+size = Vector2(25, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qe4n8"]
+radius = 141.28694
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sau36"]
+size = Vector2(25, 2)
+
+[node name="Chaser" type="CharacterBody2D" unique_id=446753434]
+script = ExtResource("1_r0mhk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=421704195]
+sprite_frames = SubResource("SpriteFrames_6q742")
+animation = &"new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1748518582]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_h063n")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=993461517]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=854654811]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_qe4n8")
+
+[node name="radio de deteccion" type="Area2D" parent="." unique_id=2101818072]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="radio de deteccion" unique_id=2073342971]
+shape = SubResource("CircleShape2D_qe4n8")
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=587748550]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1089378538]
+position = Vector2(0.5, -14)
+shape = SubResource("RectangleShape2D_sau36")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="radio de deteccion" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="radio de deteccion" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
